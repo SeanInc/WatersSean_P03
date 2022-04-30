@@ -121,7 +121,7 @@ public class FruitTreasure : MonoBehaviour
                 other.GetComponentInChildren<FindObject>().enabled = false;
 
                 other.GetComponentInChildren<FindObject>().gameObject.GetComponent<SphereCollider>().enabled = false;
-                
+                other.GetComponent<CharacterController>().enabled = false;
 
                 int i = 0;
                 bool foundSpot = false;

@@ -75,20 +75,11 @@ public class PIKMINMovement : MonoBehaviour
 
 
         //controller.Move(velocity * Time.deltaTime);
-        Gravity();
-
-    }
-
-    void Gravity()
-    {
         
-        if (groundCheck.isGrounded && velocity.y < 0)
-        {
-            velocity.y = -2f;
-        }
 
-        velocity.y += gravity * Time.deltaTime;
     }
+
+    
 
 
 

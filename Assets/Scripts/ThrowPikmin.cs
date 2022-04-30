@@ -63,7 +63,9 @@ public class ThrowPikmin : MonoBehaviour
 
     IEnumerator Throw(GameObject pikmin)
     {
-
+        pikmin.GetComponentInChildren<GroundCheck>().enabled = false;
+        pikmin.GetComponent<NavMeshAgent>().enabled = false;
+        pikmin.GetComponent<CharacterController>().enabled = false;
         pikmin.transform.position = this.GetComponentInParent<Transform>().position + new Vector3(0, 2.0f, 0);
 
         float target_Distance = Vector3.Distance(pikmin.transform.position, cursor.transform.position);
@@ -93,10 +95,17 @@ public class ThrowPikmin : MonoBehaviour
             yield return null;
         }
         
-        if (elapse_time >= flightDuration || pikmin.GetComponentInChildren<GroundCheck>().isGrounded)
+        if ((elapse_time >= flightDuration || pikmin.GetComponentInChildren<GroundCheck>().isGrounded))
         {
-            pikmin.GetComponentInChildren<FindObject>().enabled = true;
-            pikmin.GetComponent<CharacterController>().enabled = true;
+            if (pikmin.GetComponentInChildren<FindObject>().enabled == false)
+            {
+                pikmin.GetComponentInChildren<FindObject>().enabled = true;
+                pikmin.GetComponentInChildren<GroundCheck>().enabled = true;
+                yield return null;
+            }
+            yield return null;
+
+            //pikmin.GetComponent<CharacterController>().enabled = true;
             //pikmin.GetComponent<NavMeshAgent>().enabled = true;
             //  pikmin.GetComponent<NavMeshAgent>().enabled = true;
             //Debug.Log("Landed");
